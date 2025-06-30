@@ -1,0 +1,62 @@
+Project Objective:
+Generate a complete, production-ready, single-page landing page using Next.js, TypeScript, and Tailwind CSS. The primary goal of the page is to capture user emails for a free tool called the "Multi-Content Generator" and send the data to a specified webhook.
+
+Style Guide:
+
+Theme: Dark
+
+Background Color: Dark midnight blue (#2C3E50).
+
+Text Color: White for primary text, light gray (#bdc3c7) for secondary text.
+
+Accent Color: Vibrant gold (#F1C40F) for all buttons and icon backgrounds.
+
+Fonts: Use "Montserrat" for all headings and "Open Sans" for all body text.
+
+File Structure and Assets:
+
+At the root of the project, create a public directory.
+
+Inside public, create two sub-directories: images and videos.
+
+The code you generate must reference the following assets at these exact paths. The user will manually upload these files after you create the structure.
+
+Logo: /images/logo.png
+
+Creator Image: /images/sam-stacks-creator.png
+
+Demo Video: /videos/demo.mp4
+
+Page Content and Layout (In Order):
+
+Header: A centered, medium-sized logo (h-16 or approx. 96px tall) using /images/logo.png.
+
+Hero Section: A centered section with a bold headline, sub-headline, and CTA button.
+
+Headline: Stop Staring at a Blank Page. Start Generating Daily Content in 5 Minutes.
+
+Sub-headline: Get our free Multi-Content Generator that uses AI to brainstorm, write, and organize a week of social media content for you. 100% Free.
+
+CTA Button: A large, solid gold button that says Get the Free Tool Now.
+
+Demo Video Section: A centered <video> tag referencing /videos/demo.mp4. The video must be configured to autoplay, loop, and muted. It should have rounded corners and a subtle border.
+
+Features Section: A 3-column layout with circular gold icon backgrounds.
+
+Feature 1: Lightbulb icon. Headline: Endless Ideas. Text: Generate unique angles and topics for your niche on demand.
+
+Feature 2: Robot icon. Headline: Automated Writing. Text: Create engaging social media copy, hashtags, and titles in seconds.
+
+Feature 3: Calendar icon. Headline: Effortless Organization. Text: Keep all your content perfectly organized inside a simple Google Sheet.
+
+Creator Section: This section must contain only the single, centered image referencing /images/sam-stacks-creator.png. Do not add any extra text or columns.
+
+Final CTA Section: A centered section with the headline Your Audience is Waiting. and a solid gold button that says Download Your Free Generator.
+
+Footer: A simple footer with the copyright text © 2025 New Money Millionaires L.L.C. All rights reserved. and placeholder links for "Privacy Policy" and "Terms of Service".
+
+Interactivity and Functionality:
+
+Popup Modal: Both CTA buttons must trigger a popup modal for email submission. The modal must include an "X" icon to close it.
+
+Form Submission: The form inside the modal must have an async handleSubmit function that, on submit, sends a POST request with the user's email in a JSON body to this exact Make.com webhook URL: https://hook.us1.make.com/43i0zrryriegg6grhe995mveumvpwi. After a successful submission, show an alert to the user and close the modal.
