@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(222, 47%, 11%);
+  --muted: hsl(210, 40%, 96%);
+  --muted-foreground: hsl(215, 16%, 47%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(222, 47%, 11%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(222, 47%, 11%);
+  --border: hsl(214, 32%, 91%);
+  --input: hsl(214, 32%, 91%);
+  --primary: hsl(48, 86%, 50%);
+  --primary-foreground: hsl(222, 47%, 11%);
+  --secondary: hsl(210, 40%, 96%);
+  --secondary-foreground: hsl(222, 84%, 5%);
+  --accent: hsl(210, 40%, 96%);
+  --accent-foreground: hsl(222, 84%, 5%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(48, 86%, 50%);
+  --radius: 0.5rem;
+  
+  /* Custom theme colors */
+  --midnight-blue: hsl(210, 29%, 24%);
+  --light-gray: hsl(206, 14%, 75%);
+  --vibrant-gold: hsl(48, 86%, 50%);
+}
+
+.dark {
+  --background: hsl(210, 29%, 24%);
+  --foreground: hsl(0, 0%, 100%);
+  --muted: hsl(217, 19%, 27%);
+  --muted-foreground: hsl(206, 14%, 75%);
+  --popover: hsl(210, 29%, 24%);
+  --popover-foreground: hsl(0, 0%, 100%);
+  --card: hsl(210, 29%, 24%);
+  --card-foreground: hsl(0, 0%, 100%);
+  --border: hsl(217, 19%, 27%);
+  --input: hsl(217, 19%, 27%);
+  --primary: hsl(48, 86%, 50%);
+  --primary-foreground: hsl(210, 29%, 24%);
+  --secondary: hsl(217, 19%, 27%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --accent: hsl(217, 19%, 27%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 63%, 31%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --ring: hsl(48, 86%, 50%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-opensans antialiased text-foreground;
+    background-color: hsl(210, 29%, 24%);
+    color: hsl(0, 0%, 100%);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-montserrat;
+  }
+}
+
+@layer utilities {
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .font-opensans {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .bg-midnight-blue {
+    background-color: hsl(210, 29%, 24%);
+  }
+
+  .text-light-gray {
+    color: hsl(206, 14%, 75%);
+  }
+
+  .bg-vibrant-gold {
+    background-color: hsl(48, 86%, 50%);
+  }
+
+  .text-vibrant-gold {
+    color: hsl(48, 86%, 50%);
+  }
+
+  .border-vibrant-gold {
+    border-color: hsl(48, 86%, 50%);
+  }
+
+  .hover\:bg-yellow-400:hover {
+    background-color: hsl(50, 98%, 64%);
+  }
+}
