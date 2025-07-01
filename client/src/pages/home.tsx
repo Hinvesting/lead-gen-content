@@ -24,7 +24,7 @@ export default function Home() {
           <img 
             src="/images/logo.png" 
             alt="New Money Millionaires Logo" 
-            className="h-28 w-auto ml-[0px] mr-[0px] mt-[0px] mb-[0px] pl-[10px] pr-[10px] pt-[0px] pb-[0px]"
+            className="h-36 md:h-44 w-auto max-w-xs md:max-w-md"
           />
         </div>
       </header>
