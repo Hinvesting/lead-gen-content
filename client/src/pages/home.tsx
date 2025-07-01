@@ -24,11 +24,10 @@ export default function Home() {
           <img 
             src="/images/logo.png" 
             alt="New Money Millionaires Logo" 
-            className="h-28 w-auto"
+            className="h-28 w-auto ml-[0px] mr-[0px] mt-[0px] mb-[0px] pl-[10px] pr-[10px] pt-[0px] pb-[0px]"
           />
         </div>
       </header>
-
       {/* Hero Section */}
       <section className="container mx-auto px-4 text-center py-16 max-w-4xl">
         <h1 className="font-montserrat font-bold text-4xl md:text-6xl lg:text-7xl leading-tight mb-6">
@@ -44,7 +43,6 @@ export default function Home() {
           Get the Free Tool Now
         </Button>
       </section>
-
       {/* Demo Video Section */}
       <section className="container mx-auto px-4 py-16 max-w-4xl">
         <div className="flex justify-center">
@@ -61,7 +59,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Features Section */}
       <section className="container mx-auto px-4 py-16 max-w-6xl">
         <div className="grid md:grid-cols-3 gap-8">
@@ -93,7 +90,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Creator Section */}
       <section className="container mx-auto px-4 py-16">
         <div className="flex justify-center">
@@ -104,7 +100,6 @@ export default function Home() {
           />
         </div>
       </section>
-
       {/* Final CTA Section */}
       <section className="container mx-auto px-4 text-center py-16">
         <h2 className="font-montserrat font-bold text-4xl md:text-5xl mb-8">
@@ -117,7 +112,6 @@ export default function Home() {
           Download Your Free Generator
         </Button>
       </section>
-
       {/* Footer */}
       <footer className="container mx-auto px-4 py-12 text-center border-t border-gray-700">
         <p className="text-light-gray mb-4">© 2025 New Money Millionaires L.L.C. All rights reserved.</p>
@@ -126,7 +120,6 @@ export default function Home() {
           <a href="#" className="text-light-gray hover:text-vibrant-gold transition-colors duration-300">Terms of Service</a>
         </div>
       </footer>
-
       {/* Email Modal */}
       <EmailModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
