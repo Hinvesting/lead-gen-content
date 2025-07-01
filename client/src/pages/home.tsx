@@ -7,11 +7,13 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
+    console.log('[Home] Opening email modal');
     setIsModalOpen(true);
     document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
+    console.log('[Home] Closing email modal');
     setIsModalOpen(false);
     document.body.style.overflow = 'auto';
   };

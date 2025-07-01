@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,10 +15,22 @@ export default function EmailModal({ isOpen, onClose }: EmailModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
+  // Log modal state changes
+  useEffect(() => {
+    if (isOpen) {
+      console.log('[EmailModal] Modal opened');
+    } else {
+      console.log('[EmailModal] Modal closed');
+    }
+  }, [isOpen]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    console.log('[EmailModal] Form submission started', { email: email.substring(0, 3) + '...' });
+    
     if (!email || !email.includes('@')) {
+      console.warn('[EmailModal] Invalid email format:', { emailLength: email.length, hasAt: email.includes('@') });
       toast({
         title: "Invalid Email",
         description: "Please enter a valid email address.",
@@ -28,30 +40,57 @@ export default function EmailModal({ isOpen, onClose }: EmailModalProps) {
     }
 
     setIsSubmitting(true);
+    console.log('[EmailModal] Starting webhook request');
 
     try {
+      const requestPayload = { email: email };
+      console.log('[EmailModal] Sending request to webhook', { 
+        url: 'https://hook.us1.make.com/43i0zrryriegg6grhe995mveumvpwi',
+        payload: { email: email.substring(0, 3) + '...' }
+      });
+
       const response = await fetch('https://hook.us1.make.com/43i0zrryriegg6grhe995mveumvpwi', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          email: email
-        })
+        body: JSON.stringify(requestPayload)
+      });
+
+      console.log('[EmailModal] Webhook response received', { 
+        status: response.status, 
+        statusText: response.statusText,
+        ok: response.ok 
       });
 
       if (response.ok) {
+        const responseData = await response.text();
+        console.log('[EmailModal] Success response data:', responseData);
+        
         toast({
           title: "Success!",
           description: "Your Multi-Content Generator is being sent to your email.",
         });
         setEmail("");
         onClose();
+        console.log('[EmailModal] Form submission completed successfully');
       } else {
-        throw new Error('Network response was not ok');
+        const errorText = await response.text();
+        console.error('[EmailModal] Webhook returned error', { 
+          status: response.status, 
+          statusText: response.statusText,
+          errorBody: errorText 
+        });
+        throw new Error(`HTTP ${response.status}: ${response.statusText} - ${errorText}`);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('[EmailModal] Error during form submission:', {
+        error: error instanceof Error ? error.message : 'Unknown error',
+        stack: error instanceof Error ? error.stack : undefined,
+        type: typeof error,
+        timestamp: new Date().toISOString()
+      });
+      
       toast({
         title: "Error",
         description: "There was an error processing your request. Please try again.",
@@ -59,12 +98,20 @@ export default function EmailModal({ isOpen, onClose }: EmailModalProps) {
       });
     } finally {
       setIsSubmitting(false);
+      console.log('[EmailModal] Form submission process completed');
     }
   };
 
   const handleClose = () => {
+    console.log('[EmailModal] Closing modal and clearing email');
     setEmail("");
     onClose();
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+    console.log('[EmailModal] Email input changed', { length: newEmail.length, hasAt: newEmail.includes('@') });
   };
 
   return (
@@ -90,7 +137,7 @@ export default function EmailModal({ isOpen, onClose }: EmailModalProps) {
                 <Input
                   type="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={handleEmailChange}
                   required
                   placeholder="Enter your email address"
                   className="w-full p-4 rounded-lg bg-gray-800 border border-gray-600 text-white placeholder-light-gray focus:border-vibrant-gold focus:outline-none transition-colors duration-300"
